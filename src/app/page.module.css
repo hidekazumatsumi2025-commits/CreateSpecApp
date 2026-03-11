@@ -1,0 +1,81 @@
+.page {
+  display: flex;
+  min-height: 100svh;
+  padding: 40px 22px 56px;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  width: min(1100px, 100%);
+  flex-direction: column;
+  gap: 22px;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: radial-gradient(
+      18px 18px at 28% 30%,
+      rgba(255, 255, 255, 0.9),
+      transparent
+    ),
+    linear-gradient(135deg, rgba(26, 92, 255, 0.95), rgba(124, 196, 255, 0.95));
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--stroke);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 10px 12px;
+  backdrop-filter: blur(8px);
+}
+
+.hint code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 28px 14px 40px;
+  }
+}
