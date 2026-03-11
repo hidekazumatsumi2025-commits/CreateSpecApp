@@ -2,6 +2,7 @@
 set -euo pipefail
 
 echo "CI: validate spec docs + lint/test/build"
+rm -rf coverage
 
 required_files=(
   "docs/requirements.md"
@@ -26,6 +27,5 @@ fi
 
 npm ci
 npm run lint
-npm run test
+npm run test:coverage
 npm run build
-

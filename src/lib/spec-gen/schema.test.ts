@@ -1,19 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { z } from "zod";
-
-const GeneratedFilesSchema = z.object({
-  "requirements.md": z.string().min(1),
-  "acceptance.md": z.string().min(1),
-  "spec.md": z.string().min(1),
-  "tasks.md": z.string().min(1),
-  "test-plan.md": z.string().min(1),
-});
-
-const ResponseSchema = z.object({
-  projectName: z.string().min(1),
-  files: GeneratedFilesSchema,
-  questions: z.array(z.string()).default([]),
-});
+import { RequestSchema, ResponseSchema } from "./schema";
 
 describe("spec bundle schema", () => {
   it("accepts minimal valid payload", () => {
@@ -39,5 +25,10 @@ describe("spec bundle schema", () => {
       }),
     ).toThrow();
   });
-});
 
+  it("fills default request values", () => {
+    const parsed = RequestSchema.parse({ input: "build app" });
+    expect(parsed.detail).toBe("medium");
+    expect(parsed.language).toBe("ja");
+  });
+});
