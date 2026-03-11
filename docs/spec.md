@@ -40,3 +40,10 @@
 - Observability (logs/metrics/traces)
 - Deployment model
 - Backward compatibility / migrations
+
+## Testing
+
+- カバレッジ計測は Vitest (`@vitest/coverage-v8`) を利用する
+- カバレッジ対象は `src/app/api/generate/route.ts` と `src/lib/spec-gen/*.ts`
+- しきい値は statements / branches / functions / lines すべて 100%
+- CI は `npm run test:coverage` を実行し、しきい値未達を失敗にする

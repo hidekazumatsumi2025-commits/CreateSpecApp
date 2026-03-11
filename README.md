@@ -29,4 +29,4 @@ Open `http://localhost:3000`.
 
 ## CI
 
-`npm run ci` または `make ci` が `lint/test/build` と仕様ドキュメント存在チェックを行います。
+`npm run ci` または `make ci` が `lint/test:coverage/build` と仕様ドキュメント存在チェックを行います。

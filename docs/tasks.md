@@ -14,6 +14,9 @@
 - [ ] AC-001: 構造化レスポンス(JSON schema)で生成しMarkdownを返す実装を追加する（テスト: `npm run test`）
 - [ ] AC-002: UIで単体/一括ダウンロード（手動確認: `npm run dev`）
 - [ ] AC-003: APIキーがクライアントに出ないことの確認（手動確認）
+- [x] AC-004: カバレッジ不足ケースの失敗テストを先に追加する（テスト: `npm run test:coverage`）
+- [x] AC-004: APIルートと仕様生成ロジックの分岐を網羅する（テスト: `npm run test:coverage`）
+- [x] AC-004: CIでカバレッジ100%ゲートを有効化する（テスト: `npm run ci`）
 - [ ] 運用: 新規GitHubリポジトリ作成後にBranch protectionを適用（コマンド: `/Users/hide/code/apply_branch_protection_all.sh /Users/hide/code`）
 
 ## In Progress

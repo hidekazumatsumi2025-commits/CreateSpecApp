@@ -1,41 +1,11 @@
 import OpenAI from "openai";
 import { zodResponseFormat } from "openai/helpers/zod";
 import { NextResponse } from "next/server";
-import { z } from "zod";
+import { buildSystemPrompt, buildUserPrompt } from "@/lib/spec-gen/prompt";
+import { RequestSchema, ResponseSchema } from "@/lib/spec-gen/schema";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-const RequestSchema = z.object({
-  input: z.string().min(1),
-  detail: z.enum(["low", "medium", "high"]).default("medium"),
-  language: z.enum(["ja", "en"]).default("ja"),
-});
-
-const GeneratedFilesSchema = z.object({
-  "requirements.md": z.string().min(1),
-  "acceptance.md": z.string().min(1),
-  "spec.md": z.string().min(1),
-  "tasks.md": z.string().min(1),
-  "test-plan.md": z.string().min(1),
-});
-
-const ResponseSchema = z.object({
-  projectName: z.string().min(1),
-  files: GeneratedFilesSchema,
-  questions: z.array(z.string()).default([]),
-});
-
-function detailInstruction(detail: "low" | "medium" | "high") {
-  if (detail === "low") return "Keep it minimal. Prefer short lists.";
-  if (detail === "high")
-    return "Be detailed. Include edge cases, errors, and concrete acceptance criteria.";
-  return "Moderate detail. Enough to implement without guessing.";
-}
-
-function languageInstruction(language: "ja" | "en") {
-  return language === "ja" ? "Write in Japanese." : "Write in English.";
-}
 
 export async function POST(req: Request) {
   try {
@@ -58,29 +28,8 @@ export async function POST(req: Request) {
     const openai = new OpenAI({ apiKey });
     const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
 
-    const system = [
-      "You are a product-focused specification assistant.",
-      "Turn a vague user request into spec-driven Markdown files used for development.",
-      "Output must be valid JSON matching the given schema.",
-      "Keep file contents self-contained and consistent across files.",
-      languageInstruction(language),
-      detailInstruction(detail),
-    ].join("\n");
-
-    const user = [
-      "User request:",
-      input.trim(),
-      "",
-      "Generate these files:",
-      "- requirements.md: Goal/Non-goals/Constraints",
-      "- acceptance.md: AC-001... with Given/When/Then",
-      "- spec.md: Overview/Interfaces/Data Model/Error Handling/Security/Ops",
-      "- tasks.md: Backlog with tasks mapped to AC ids",
-      "- test-plan.md: Scope/Strategy/Test Cases/Non-functional/CI Mapping",
-      "",
-      "Also output a short 'questions' list for missing info.",
-      "Project name should be short and filesystem-safe (kebab-case).",
-    ].join("\n");
+    const system = buildSystemPrompt(detail, language);
+    const user = buildUserPrompt(input);
 
     const completion = await openai.chat.completions.parse({
       model,
@@ -108,4 +57,3 @@ export async function POST(req: Request) {
     );
   }
 }
-

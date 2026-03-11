@@ -27,3 +27,9 @@
 - Given: ユーザーがブラウザを操作している
 - When: API呼び出しが発生する
 - Then: `OPENAI_API_KEY` はクライアントに露出しない（サーバー側のみで使用される）
+
+### AC-004: テストカバレッジ品質ゲート
+
+- Given: 開発者がCIを実行する
+- When: `npm run test:coverage` を実行する
+- Then: `src/app/api/generate/route.ts` と `src/lib/spec-gen/*.ts` の statements / branches / functions / lines がすべて 100% である
