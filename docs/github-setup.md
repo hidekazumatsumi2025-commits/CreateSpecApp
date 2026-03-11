@@ -23,3 +23,10 @@ GitHubの `Settings -> Branches -> Branch protection rules` で `main` を保護
 - Require status checks to pass:
   - `CI / ci`
 
+CLIで設定する場合（推奨）:
+
+```sh
+/Users/hide/code/apply_branch_protection_all.sh /Users/hide/code
+```
+
+このコマンドは `~/code` 配下の GitHub リポジトリに対して、上記の保護設定を一括適用する。

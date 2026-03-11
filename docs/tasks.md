@@ -10,6 +10,7 @@
 - [ ] AC-001: 構造化レスポンス(JSON schema)で生成しMarkdownを返す（テスト: `npm run test`）
 - [ ] AC-002: UIで単体/一括ダウンロード（手動確認: `npm run dev`）
 - [ ] AC-003: APIキーがクライアントに出ないことの確認（手動確認）
+- [ ] 運用: 新規GitHubリポジトリ作成後にBranch protectionを適用（コマンド: `/Users/hide/code/apply_branch_protection_all.sh /Users/hide/code`）
 
 ## In Progress
 

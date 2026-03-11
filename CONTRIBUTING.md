@@ -5,6 +5,10 @@
 - `main` へ直接pushしない（必ずPR）
 - ブランチ名: `feat/<topic>` / `fix/<topic>` / `chore/<topic>`
 - 1PR = 1目的（変更は小さく）
+- 新規リポジトリ作成直後に `main` の Branch protection を設定する
+  - PR必須
+  - 最低1承認必須
+  - 必須チェック: `CI / ci`
 
 ## Spec-Driven
 
@@ -21,4 +25,3 @@ npm run ci
 
 - `OPENAI_API_KEY` は `.env.local` に置く
 - どのファイルにもキーをコミットしない
-
