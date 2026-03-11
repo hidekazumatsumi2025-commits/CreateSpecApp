@@ -13,7 +13,9 @@
 ## Spec-Driven
 
 - 変更前に `docs/requirements.md` / `docs/spec.md` / `docs/acceptance.md` / `docs/tasks.md` を更新する
-- 重要な仕様はテストで固定する
+- テストファーストで進める（Spec -> Test -> Code）
+- 実装順序は Red -> Green -> Refactor を基本とする
+- 重要な仕様は必ずテストで固定する（受け入れ条件とテストを対応付ける）
 
 ## Local Checks
 

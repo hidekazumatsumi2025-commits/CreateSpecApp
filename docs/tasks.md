@@ -4,10 +4,14 @@
 
 例:
 
-- [ ] AC-001 を満たす: <task>（テスト: <path or command>）
+- [ ] AC-001: 失敗するテストを先に追加する（テスト: <path or command>）
+- [ ] AC-001 を満たす実装を追加する（テスト: <path or command>）
+- [ ] AC-001: リファクタし、テストが通ることを確認する（テスト: <path or command>）
 
-- [ ] AC-001: 生成APIの入力バリデーション（テスト: `npm run test`）
-- [ ] AC-001: 構造化レスポンス(JSON schema)で生成しMarkdownを返す（テスト: `npm run test`）
+- [ ] AC-001: 入力バリデーションの失敗テストを先に追加する（テスト: `npm run test`）
+- [ ] AC-001: 生成APIの入力バリデーションを実装する（テスト: `npm run test`）
+- [ ] AC-001: 構造化レスポンス(JSON schema)の失敗テストを先に追加する（テスト: `npm run test`）
+- [ ] AC-001: 構造化レスポンス(JSON schema)で生成しMarkdownを返す実装を追加する（テスト: `npm run test`）
 - [ ] AC-002: UIで単体/一括ダウンロード（手動確認: `npm run dev`）
 - [ ] AC-003: APIキーがクライアントに出ないことの確認（手動確認）
 - [ ] 運用: 新規GitHubリポジトリ作成後にBranch protectionを適用（コマンド: `/Users/hide/code/apply_branch_protection_all.sh /Users/hide/code`）
