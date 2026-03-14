@@ -25,6 +25,8 @@ if [[ "$missing" -ne 0 ]]; then
   exit 1
 fi
 
+bash scripts/spec-driven-guard.sh
+
 npm ci
 npm run lint
 npm run test:coverage
