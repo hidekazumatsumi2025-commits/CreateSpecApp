@@ -9,6 +9,16 @@ required_docs=(
   "docs/test-plan.md"
 )
 
+has_pattern() {
+  local pattern="$1"
+  local file="$2"
+  if command -v rg >/dev/null 2>&1; then
+    rg -n "$pattern" "$file" >/dev/null 2>&1
+    return $?
+  fi
+  grep -Eq "$pattern" "$file"
+}
+
 missing=0
 for f in "${required_docs[@]}"; do
   if [[ ! -f "$f" ]]; then
@@ -73,12 +83,12 @@ if [[ "$code_changed" -eq 1 && "$tests_changed" -eq 0 ]]; then
   exit 1
 fi
 
-if ! rg -n "AC-[0-9]{3}" docs/acceptance.md >/dev/null 2>&1; then
+if ! has_pattern "AC-[0-9]{3}" docs/acceptance.md; then
   echo "spec-driven-guard: docs/acceptance.md must include AC-IDs (e.g. AC-001)." >&2
   exit 1
 fi
 
-if ! rg -n "AC-[0-9]{3}" docs/tasks.md >/dev/null 2>&1; then
+if ! has_pattern "AC-[0-9]{3}" docs/tasks.md; then
   echo "spec-driven-guard: docs/tasks.md must reference AC-IDs for traceability." >&2
   exit 1
 fi
